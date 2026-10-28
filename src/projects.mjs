@@ -3,7 +3,7 @@ export default [
     "id": "cloud",
     "n": "01",
     "title": "Automatiser le déploiement d’un environnement hors production.",
-    "short": "Un environnement reproductible et administrable.",
+    "short": "Un environnement reproductible en une journée après industrialisation.",
     "domain": "Infrastructure",
     "context": "Entreprise · Orange",
     "kind": "entreprise",
@@ -14,15 +14,15 @@ export default [
       "Ansible",
       "Terraform"
     ],
-    "desc": "Déploiement et administration d’un environnement hors production, avec automatisation des opérations récurrentes et sécurisation des accès.",
+    "desc": "Déploiement et administration d’un environnement hors production, reproductible en une journée après industrialisation, pour tester les évolutions applicatives et les versions logicielles.",
     "place": "Orange · Montreuil",
     "period": "Depuis octobre 2024",
     "role": "Déploiement et administration",
     "visual": "stack",
     "summary": [
-      "Disposer d’un environnement hors production pour préparer et valider les évolutions applicatives.",
+      "Disposer d’un environnement hors production pour expérimenter et tester des versions logicielles avant une éventuelle mise en production.",
       "Automatiser les déploiements, administrer les systèmes et préparer leur exploitation.",
-      "Un environnement déployé et documenté, avec des opérations reproductibles."
+      "Après environ un mois de construction initiale, un environnement reproductible en une journée grâce à l’industrialisation."
     ],
     "nodes": [
       [
@@ -56,21 +56,31 @@ export default [
       [
         "Préparer l’exploitation dès le déploiement",
         "La supervision et la documentation accompagnent la mise en place des services pour faciliter leur administration."
+      ],
+      [
+        "Expérimenter hors production",
+        "L’environnement de test permet d’essayer d’autres versions logicielles et de prendre davantage de risques dans les essais avant une éventuelle mise en production."
       ]
     ],
-    "result": "Environnement hors production déployé, opérations de configuration et de livraison automatisées, exploitation documentée.",
+    "result": "Après un investissement initial d’environ un mois pour construire et industrialiser l’environnement, sa reproduction prend une journée. La hors production permet de tester des versions logicielles et de préparer les évolutions applicatives.",
     "flow": [
       "Préparer",
       "Automatiser",
       "Valider et exploiter"
     ],
-    "scope": "Mon intervention porte sur le déploiement, l’administration, l’automatisation et la sécurisation d’un environnement hors production.",
-    "metrics": [],
+    "scope": "Mon intervention porte sur le déploiement, l’administration, l’automatisation et la sécurisation d’un environnement hors production. Le mois correspond à la construction initiale ; la journée correspond à la reproduction après industrialisation. Il ne s’agit pas de deux durées mesurées pour une même opération.",
+    "metrics": [
+      {
+        "value": "1 jour",
+        "label": "Reproduction après industrialisation",
+        "detail": "Durée de reproduction d’un environnement, après environ un mois de construction initiale."
+      }
+    ],
     "sources": [],
     "outputs": [
-      "Environnement hors production opérationnel.",
-      "Déploiements reproductibles et documentés.",
-      "Supervision et éléments d’exploitation préparés."
+      "Environnement reproductible en une journée après industrialisation.",
+      "Environnement hors production disponible pour expérimenter et tester des versions logicielles.",
+      "Supervision et exploitation documentées."
     ],
     "status": "Déployé · environnement hors production",
     "category": "professionnel"
@@ -79,7 +89,7 @@ export default [
     "id": "acces",
     "n": "02",
     "title": "Automatiser la gestion des certificats.",
-    "short": "Renouvellement des certificats automatisé.",
+    "short": "Renouvellements sans intervention manuelle, sous surveillance Grafana.",
     "domain": "Sécurité",
     "context": "Entreprise · Orange",
     "kind": "entreprise",
@@ -87,17 +97,18 @@ export default [
       "Certbot",
       "ACME",
       "TLS",
-      "Gestion des certificats"
+      "Gestion des certificats",
+      "Grafana"
     ],
-    "desc": "Automatisation du renouvellement des certificats et validation de la compatibilité des services.",
+    "desc": "Automatisation avec Certbot des renouvellements de certificats de l’application métier, de la hors production à la production en passant par la préproduction, avec surveillance via Grafana.",
     "place": "Orange · Montreuil",
     "period": "Depuis octobre 2024",
     "role": "Configuration et exploitation",
     "visual": "lock",
     "summary": [
-      "Réduire les opérations manuelles de renouvellement des certificats.",
-      "Préparer et tester l’automatisation avant son déploiement.",
-      "Renouvellement automatisé et fonctionnement des services vérifié."
+      "Accompagner le passage à des certificats de durée plus courte sans multiplier les interventions manuelles.",
+      "Automatiser avec Certbot / ACME, vérifier la compatibilité des services et surveiller les renouvellements via Grafana.",
+      "Des renouvellements plusieurs fois par an sans intervention manuelle, avec une surveillance maintenue."
     ],
     "nodes": [
       [
@@ -113,15 +124,16 @@ export default [
       [
         "Exploitation",
         "Suivi des renouvellements",
-        "Mise en place du fonctionnement automatisé et documentation."
+        "Surveillance du fonctionnement de Certbot et des renouvellements via Grafana, avec documentation d’exploitation."
       ]
     ],
     "contribution": [
       "Étudier le mécanisme de renouvellement Certbot / ACME.",
       "Préparer et tester l’automatisation.",
       "Vérifier la compatibilité des certificats avec les services concernés.",
-      "Participer au déploiement et au suivi des renouvellements.",
-      "Documenter le fonctionnement et les vérifications utiles à l’exploitation."
+      "Déployer et suivre les renouvellements sur les serveurs de l’application métier, de la hors production à la production en passant par la préproduction.",
+      "Documenter le fonctionnement et les vérifications utiles à l’exploitation.",
+      "Surveiller le fonctionnement de Certbot et les renouvellements via Grafana."
     ],
     "decisions": [
       [
@@ -130,21 +142,36 @@ export default [
       ],
       [
         "Automatiser les opérations récurrentes",
-        "Le renouvellement automatisé réduit les interventions manuelles et facilite le maintien des certificats à jour."
+        "L’automatisation permet de renouveler les certificats plusieurs fois par an sans répéter les interventions manuelles, tout en maintenant une surveillance via Grafana."
+      ],
+      [
+        "Accompagner des durées de validité plus courtes",
+        "L’automatisation rend possible une fréquence de renouvellement plus élevée sans multiplier les opérations manuelles."
       ]
     ],
-    "result": "Renouvellement des certificats automatisé, compatibilité vérifiée et fonctionnement documenté.",
+    "result": "Avant automatisation, un renouvellement manuel demandait au moins une heure, notamment pour reprendre connaissance de la procédure et de ses évolutions. Avec Certbot, les renouvellements ont lieu plusieurs fois par an sans intervention manuelle. La surveillance via Grafana reste nécessaire.",
     "flow": [
       "Préparation",
       "Tests de compatibilité",
       "Déploiement et suivi"
     ],
-    "scope": "Le projet concerne l’automatisation de la gestion des certificats et la validation de leur fonctionnement avec les services.",
-    "metrics": [],
+    "scope": "Le périmètre couvre les serveurs de l’application métier en hors production, préproduction et production. Le temps annoncé concerne l’intervention manuelle de renouvellement ; il exclut la surveillance et les éventuelles interventions sur incident. La fréquence des renouvellements a changé avec le passage à des certificats de durée plus courte.",
+    "metrics": [
+      {
+        "value": "0 min",
+        "label": "Intervention manuelle par renouvellement automatisé",
+        "detail": "Renouvellements plusieurs fois par an, sous surveillance Grafana. Ce chiffre exclut la surveillance et la gestion d’éventuels incidents."
+      },
+      {
+        "value": "≥ 1 h",
+        "label": "Temps consacré à un renouvellement manuel auparavant",
+        "detail": "Incluait la reprise de connaissance de la procédure et de ses évolutions. La fréquence antérieure étant différente, aucun gain annuel n’est extrapolé."
+      }
+    ],
     "sources": [],
     "outputs": [
-      "Renouvellement automatisé des certificats.",
-      "Tests de compatibilité et documentation d’exploitation."
+      "Renouvellements automatisés plusieurs fois par an sans intervention manuelle.",
+      "Surveillance via Grafana et documentation d’exploitation."
     ],
     "status": "Déployé · renouvellement automatisé",
     "category": "professionnel"

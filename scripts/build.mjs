@@ -23,8 +23,8 @@ function layout(title, active, content, depth = 0) {
 const projectPreviews = {
   'network-hardening': ['Durcissement réseau Azure / AWS', 'Segmentation, détection Suricata et tunnel IPsec en laboratoire.'],
   'space-ml': ['Détection d’anomalies spatiales', 'Modèles de télémétrie, Modbus et réseau ; fusion des prédictions.'],
-  'cloud': ['Infrastructure & déploiement automatisé', 'Environnement hors production et opérations de déploiement reproductibles.'],
-  'acces': ['Automatisation des certificats', 'Renouvellement automatisé et validation de la compatibilité des services.'],
+  'cloud': ['Infrastructure & déploiement automatisé', 'Environnement reproductible en une journée après industrialisation.'],
+  'acces': ['Automatisation des certificats', 'Renouvellements sans intervention manuelle, sous surveillance Grafana.'],
   'support-citrix': ['Résolution d’incident de virtualisation', 'Diagnostic, rétablissement du service et vérification du fonctionnement.'],
   'reseau': ['Intégration réseaux & sécurité', 'Pare-feux, accès VPN et Wi-Fi d’entreprise.'],
   'journaux': ['Centralisation des journaux', 'Collecte rsyslog pour la traçabilité et le diagnostic système.'],
@@ -51,7 +51,7 @@ const home = `<div class="shell">
 <div class="stats" aria-label="Chiffres clés">
 <div><strong>49 → 0</strong><span>Événements diagnostics Suricata après réglage</span><small>Lab · signal de scan préservé</small></div>
 <div><strong>94,90 %</strong><span>Accuracy du modèle de télémétrie satellite</span><small>Évaluation OPSSAT-AD</small></div>
-<div><strong>CI/CD</strong><span>Automatisation des déploiements</span><small>Entreprise · environnement hors production</small></div>
+<div><strong>1 jour</strong><span>Reproduction d’un environnement après industrialisation</span><small>Entreprise · hors production</small></div>
 <div><strong>66</strong><span>Utilisateurs de l’assistant IA sur son premier mois</span><small>Entreprise</small></div>
 </div>
 <div class="actions">${link('projets.html', 'Explorer les projets', 'button')}${link('experience.html', 'Expériences', 'button secondary')}${profile.cv ? link(profile.cv, 'Télécharger le CV', 'button secondary') : ''}${link(profile.github, 'GitHub', 'button secondary')}${link('contact.html', 'Contact', 'button secondary')}</div>
@@ -95,7 +95,7 @@ const experiences = [
       'Participation à l’implémentation de VPN IPsec de site à site via concentrateurs.',
       'Déploiement d’un assistant IA intégré à l’application métier, avec un système RAG pour ancrer les réponses sur la documentation interne.',
       'Prise en charge d’incidents de virtualisation : diagnostic, rétablissement et vérification du fonctionnement.',
-      'Automatisation du renouvellement des certificats avec Certbot / ACME et tests de compatibilité.'
+      'Automatisation du renouvellement des certificats avec Certbot / ACME, tests de compatibilité et surveillance via Grafana.'
     ],
     result: 'Environnement hors production déployé, opérations automatisées, accès sécurisés et journalisation centralisée ; incidents pris en charge ; assistant IA déployé avec RAG et suivi d’usage.',
     links: [['cloud', 'Infrastructure'], ['acces', 'Accès sécurisés'], ['support-citrix', 'Support Citrix DaaS'], ['assistant-ia', 'Assistant IA & RAG']]
@@ -133,8 +133,8 @@ const missionDetails = [
   {
     needs: 'Disposer d’environnements hors production reproductibles, sécuriser les accès à l’application et maintenir les services lors des incidents. Le renouvellement des certificats et la collecte des journaux font aussi partie du périmètre.',
     approach: 'Préparer les environnements, automatiser les opérations récurrentes, sécuriser les accès et documenter l’exploitation. L’assistant IA utilise la documentation interne pour enrichir ses réponses.',
-    tools: ['RHEL', 'VMware vSphere', 'Citrix DaaS', 'Terraform', 'GitLab CI/CD', 'Ansible', 'Certbot / ACME', 'rsyslog', 'LLM / RAG'],
-    outcomes: ['Environnement hors production déployé et opérations de configuration automatisées.', 'Accès sécurisés, renouvellement des certificats et collecte des journaux mis en place.', 'Incidents de virtualisation pris en charge, avec vérification du rétablissement.', 'Assistant IA intégré à l’application avec RAG et suivi d’usage.']
+    tools: ['RHEL', 'VMware vSphere', 'Citrix DaaS', 'Terraform', 'GitLab CI/CD', 'Ansible', 'Certbot / ACME', 'Grafana', 'rsyslog', 'LLM / RAG'],
+    outcomes: ['Environnement reproductible en une journée après environ un mois de construction initiale ; tests de versions logicielles hors production.', 'Renouvellements des certificats plusieurs fois par an sans intervention manuelle, sous surveillance Grafana ; au moins une heure par renouvellement manuel auparavant.', 'Accès sécurisés et collecte des journaux centralisée.', 'Incidents de virtualisation pris en charge, avec vérification du rétablissement.', 'Assistant IA intégré à l’application avec RAG et suivi d’usage.']
   },
   {
     needs: 'Adapter la connectivité, le filtrage et l’authentification aux besoins des clients, en assurant la cohérence entre réseau local, accès distant et Wi-Fi.',

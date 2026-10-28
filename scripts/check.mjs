@@ -36,7 +36,7 @@ assert(!/\bVelora\b/i.test(JSON.stringify(projects)));
 assert.equal(projects.find(p=>p.id==="sonarqube").metrics.length,5);
 assert.equal(projects.find(p=>p.id==="assistant-ia").metrics.length,3);
 assert(projects.find(p=>p.id==="assistant-ia").metrics.every(m=>m.internal===true&&!m.url));
-for(const id of ['cloud','acces','support-citrix'])assert.equal(projects.find(p=>p.id===id).metrics.length,0);
+assert.equal(projects.find(p=>p.id==='support-citrix').metrics.length,0);
 assert(projects.find(p=>p.id==="space-ml").scope.includes("sans réexécution"));
 for(const project of projects){const html=await readFile(`cases/${project.id}.html`,"utf8");assert(html.includes('id="resultats"'));for(const m of project.metrics||[])if(m.url)assert(html.includes(m.url));}
 const contact=await readFile('contact.html','utf8');
