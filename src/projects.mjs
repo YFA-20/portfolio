@@ -472,19 +472,22 @@ export default [
         "value": "66",
         "label": "Utilisateurs sur le premier mois",
         "detail": "Utilisateurs distincts de l’assistant entre le 1er et le 27 octobre 2026, premier mois de la mise en œuvre officielle.",
-        "internal": true
+        "internal": true,
+        "provenance": "Mesure interne"
       },
       {
         "value": "80",
         "label": "Messages échangés",
         "detail": "Messages envoyés à l’assistant sur la même période, canaux webchat et simulateur confondus.",
-        "internal": true
+        "internal": true,
+        "provenance": "Mesure interne"
       },
       {
         "value": "100 %",
         "label": "Intentions comprises",
         "detail": "Toutes les intentions détectées (1 intention suivie) ont été comprises par l’assistant sur la période mesurée.",
-        "internal": true
+        "internal": true,
+        "provenance": "Mesure interne"
       }
     ],
     "sources": [],

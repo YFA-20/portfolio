@@ -35,19 +35,21 @@ assert(!JSON.stringify(projects).includes("Caryon"));
 assert(!/\bVelora\b/i.test(JSON.stringify(projects)));
 assert.equal(projects.find(p=>p.id==="sonarqube").metrics.length,5);
 assert.equal(projects.find(p=>p.id==="assistant-ia").metrics.length,3);
-assert(projects.find(p=>p.id==="assistant-ia").metrics.every(m=>m.internal===true&&!m.url));
+assert(projects.find(p=>p.id==="assistant-ia").metrics.every(m=>m.internal===true&&!m.url&&m.provenance==="Mesure interne"));
 assert.equal(projects.find(p=>p.id==='support-citrix').metrics.length,0);
 assert(projects.find(p=>p.id==="space-ml").scope.includes("sans réexécution"));
-for(const project of projects){const html=await readFile(`cases/${project.id}.html`,"utf8");assert(html.includes('id="resultats"'));for(const m of project.metrics||[])if(m.url)assert(html.includes(m.url));}
+for(const project of projects){const html=await readFile(`cases/${project.id}.html`,"utf8");assert(html.includes('id="resultats"'));for(const m of project.metrics||[]){if(m.url)assert(html.includes(m.url));if(m.internal)assert(html.includes('Mesure interne'),`${project.id}: provenance mesure interne affichée`);}}
 const contact=await readFile('contact.html','utf8');
 assert(contact.includes('https://github.com/YFA-20'));
 assert(!contact.includes('mailto:'));
 const home=await readFile('profil.html','utf8');
 assert(home.includes('septembre 2027'));
 assert(!home.includes('<main id="contenu"></main>'));
+for(const directory of ['.','cases'])for(const file of await readdir(directory)){if(!file.endsWith('.html'))continue;const html=await readFile(path.join(directory,file),'utf8');assert(!html.includes('\u2014'),`${file}: tiret cadratins`);}
 console.log(`${checked} pages contrôlées : liens locaux, absence de liens imbriqués, navigation, titres, contenu sans JavaScript et coordonnées.`);
 
 const listing=await readFile('projets.html','utf8');
+for(const project of projects){const internalCount=(project.metrics||[]).filter(m=>m.internal).length;if(internalCount){const start=listing.indexOf(`id="${project.id}"`);const next=listing.indexOf('class="project-report"',start+10);const section=listing.slice(start,next>start?next:start+20000);assert.equal((section.match(/Mesure interne/g)||[]).length,internalCount,`${project.id}: ${internalCount} mesures internes dans le rapport`);}}
 for(const project of projects){
  assert(listing.includes(`id="${project.id}"`),`${project.id}: présentation intégrée`);
  assert(listing.includes(`href="#${project.id}"`),`${project.id}: entrée du sommaire`);
