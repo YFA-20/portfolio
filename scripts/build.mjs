@@ -187,7 +187,7 @@ function projectReport(c) {
 <section><h4>Choix retenus</h4><ul>${c.decisions.map(d=>`<li>${escape(d[1])}</li>`).join('')}</ul></section>
 <section><h4>Périmètre et limites</h4><p>${escape(c.scope)}</p></section>
 <section><h4>Travail réalisé</h4><ul>${c.contribution.map(t=>`<li>${escape(t)}</li>`).join('')}</ul></section>
-<section class="report-outcome"><h4>Bilan</h4>${c.metrics?.length ? `<ul class="report-metrics">${c.metrics.map(m=>`<li><strong>${escape(m.value)}</strong> — ${escape(m.label)}. ${escape(m.detail)}${m.url ? ` ${link(m.url,'Source')}` : m.provenance ? ` <span class="measurement-note">${escape(m.provenance)}.</span>` : ''}</li>`).join('')}</ul>` : ''}<p>${escape(c.result)}</p></section>
+<section class="report-outcome"><h4>Bilan</h4>${c.metrics?.length ? `<ul class="report-metrics">${c.metrics.map(m=>`<li><strong>${escape(m.value)}</strong> · ${escape(m.label)}. ${escape(m.detail)}${m.url ? ` ${link(m.url,'Source')}` : m.provenance ? ` <span class="measurement-note">${escape(m.provenance)}.</span>` : ''}</li>`).join('')}</ul>` : ''}<p>${escape(c.result)}</p></section>
 </div>
 <div class="report-links">${link('cases/'+c.id+'.html','Dossier technique')}${c.repo ? link(c.repo,'Dépôt GitHub') : ''}<a href="#project-index">Retour au sommaire ↑</a></div>
 </article>`;
@@ -195,7 +195,7 @@ function projectReport(c) {
 
 // ---------- Dossiers techniques ----------
 function resultsBlock(c) {
-  return `<section class="case-section" id="resultats"><h2>Bilan</h2>${c.metrics?.length ? `<ul class="metric-list">${c.metrics.map(m => `<li><strong>${escape(m.value)}</strong><span>${escape(m.label)} — ${escape(m.detail)}</span>${m.url ? `<a class="text-link" href="${escape(m.url)}">Consulter la preuve <span aria-hidden="true">→</span></a>` : m.provenance ? `<small>${escape(m.provenance)}</small>` : ''}</li>`).join('')}</ul><ul class="outputs"><li>${escape(c.result)}</li></ul>` : `<ul class="outputs">${(c.outputs || [c.result]).map(t => `<li>${escape(t)}</li>`).join('')}</ul>`}</section>`;
+  return `<section class="case-section" id="resultats"><h2>Bilan</h2>${c.metrics?.length ? `<ul class="metric-list">${c.metrics.map(m => `<li><strong>${escape(m.value)}</strong><span>${escape(m.label)}. ${escape(m.detail)}</span>${m.url ? `<a class="text-link" href="${escape(m.url)}">Consulter la preuve <span aria-hidden="true">→</span></a>` : m.provenance ? `<small>${escape(m.provenance)}</small>` : ''}</li>`).join('')}</ul><ul class="outputs"><li>${escape(c.result)}</li></ul>` : `<ul class="outputs">${(c.outputs || [c.result]).map(t => `<li>${escape(t)}</li>`).join('')}</ul>`}</section>`;
 }
 function sourcesBlock(c) {
   return c.repo || c.sources?.length ? `<section class="case-section"><h2>Ressources</h2><div class="source-links">${c.repo ? `<a class="text-link" href="${escape(c.repo)}">Ouvrir le dépôt GitHub <span aria-hidden="true">→</span></a>` : ''}${(c.sources || []).map(src => `<a class="text-link" href="${escape(src.url)}">${escape(src.label)} <span aria-hidden="true">→</span></a>`).join('')}</div></section>` : '';
